@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BS News — Beat Saber News Feed</title>
+  <meta name="description" content="BS News — community-submitted Beat Saber news. Admin-approved public feed." />
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#08121f" />
+</head>
+
+<body>
+  <!-- Shared navbar (rendered by app.js) -->
+  <header class="site-header">
+    <nav class="navbar" id="navbar"></nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>BS News</h1>
+        <p class="muted">Community-submitted Beat Saber news. Posts appear publicly after admin approval.</p>
+      </div>
+      <div class="hero__right">
+        <div class="pill">
+          <span class="dot"></span>
+          <span id="statusLine">Loading…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Composer -->
+    <section class="panel" id="composerPanel" hidden>
+      <div class="panel__header">
+        <h2>Create a post</h2>
+        <p class="muted">Text is required. Images/GIFs are optional. Your post will be <b>pending</b> until approved.</p>
+      </div>
+
+      <form class="composer" id="composerForm">
+        <label class="field">
+          <span class="field__label">Text</span>
+          <textarea id="postText" class="input textarea" rows="4" maxlength="1200" placeholder="Share Beat Saber news, updates, map highlights, mod notes, etc." required></textarea>
+          <span class="field__hint"><span id="charCount">0</span>/1200</span>
+        </label>
+
+        <div class="composer__row">
+          <label class="field">
+            <span class="field__label">Media (optional)</span>
+            <input id="postMedia" class="input file" type="file" accept="image/*,.gif" />
+            <span class="field__hint">Allowed: images + GIFs</span>
+          </label>
+
+          <div class="preview" id="mediaPreview" hidden>
+            <div class="preview__top">
+              <span class="preview__label">Preview</span>
+              <button type="button" class="btn btn--ghost btn--sm" id="clearMediaBtn">Remove</button>
+            </div>
+            <img id="previewImg" alt="Media preview" />
+          </div>
+        </div>
+
+        <div class="composer__actions">
+          <button class="btn btn--primary" id="submitPostBtn" type="submit">
+            <span class="spinner" id="submitSpinner" hidden></span>
+            Submit for approval
+          </button>
+          <div class="notice" id="composerNotice" role="status" aria-live="polite"></div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Logged out message -->
+    <section class="panel" id="loggedOutPanel" hidden>
+      <div class="panel__header">
+        <h2>Want to post?</h2>
+        <p class="muted">Sign in with Google to submit news. Admins approve posts before they appear publicly.</p>
+      </div>
+      <div class="panel__actions">
+        <a class="btn btn--primary" href="./accounts.html">Go to Account</a>
+      </div>
+    </section>
+
+    <!-- Admin panel (only visible to admins; also protected by Firestore rules) -->
+    <section class="panel" id="adminPanel" hidden>
+      <div class="panel__header panel__header--split">
+        <div>
+          <h2>Admin moderation</h2>
+          <p class="muted">Pending posts awaiting approval.</p>
+        </div>
+        <button class="btn btn--ghost btn--sm" id="refreshPendingBtn" type="button">Refresh</button>
+      </div>
+
+      <div class="list" id="pendingList">
+        <div class="skeleton" id="pendingSkeleton">
+          <div class="skeleton__row"></div>
+          <div class="skeleton__row"></div>
+          <div class="skeleton__row"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public feed -->
+    <section class="panel">
+      <div class="panel__header panel__header--split">
+        <div>
+          <h2>Approved feed</h2>
+          <p class="muted">Newest approved posts first.</p>
+        </div>
+        <button class="btn btn--ghost btn--sm" id="refreshFeedBtn" type="button">Refresh</button>
+      </div>
+
+      <div class="feed" id="feed">
+        <div class="skeleton" id="feedSkeleton">
+          <div class="skeleton__card"></div>
+          <div class="skeleton__card"></div>
+          <div class="skeleton__card"></div>
+        </div>
+      </div>
+
+      <div class="empty" id="feedEmpty" hidden>
+        <h3>No approved posts yet</h3>
+        <p class="muted">Be the first to submit a post (then wait for approval).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="muted">© <span id="year"></span> BS News</span>
+      <span class="muted">Built with Firebase Auth, Firestore, Storage</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./feed.js"></script>
+</body>
+</html>

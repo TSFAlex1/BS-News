@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BS News — Extras</title>
+  <meta name="description" content="BS News extras: useful Beat Saber links and info." />
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#08121f" />
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar" id="navbar"></nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>Extras</h1>
+        <p class="muted">Useful Beat Saber resources, community hubs, tools, and guides.</p>
+      </div>
+      <div class="hero__right">
+        <div class="pill">
+          <span class="dot"></span>
+          <span id="statusLine">Loading…</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card card--link">
+        <h2>BeatSaver</h2>
+        <p class="muted">Browse and download custom maps.</p>
+        <a class="btn btn--primary btn--sm" href="https://beatsaver.com" target="_blank" rel="noopener">Open</a>
+      </article>
+
+      <article class="card card--link">
+        <h2>ScoreSaber</h2>
+        <p class="muted">Leaderboards and performance tracking.</p>
+        <a class="btn btn--primary btn--sm" href="https://scoresaber.com" target="_blank" rel="noopener">Open</a>
+      </article>
+
+      <article class="card card--link">
+        <h2>BeatLeader</h2>
+        <p class="muted">Alternative leaderboards + replays.</p>
+        <a class="btn btn--primary btn--sm" href="https://beatleader.xyz" target="_blank" rel="noopener">Open</a>
+      </article>
+
+      <article class="card card--link">
+        <h2>BSMG Wiki</h2>
+        <p class="muted">Modding guides and community info.</p>
+        <a class="btn btn--primary btn--sm" href="https://bsmg.wiki" target="_blank" rel="noopener">Open</a>
+      </article>
+
+      <article class="card card--link">
+        <h2>Mod Assistant</h2>
+        <p class="muted">Popular tool for PC mod setup (community-maintained).</p>
+        <a class="btn btn--primary btn--sm" href="https://github.com/Assistant/ModAssistant" target="_blank" rel="noopener">Open</a>
+      </article>
+
+      <article class="card card--link">
+        <h2>Tips for posting on BS News</h2>
+        <ul class="list list--bullets muted">
+          <li>Post short, clear updates and include sources when possible.</li>
+          <li>Images/GIFs are optional; keep them relevant.</li>
+          <li>Posts go public only after admin approval.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="muted">© <span id="year"></span> BS News</span>
+      <span class="muted">Extras & community links</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

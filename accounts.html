@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BS News — Account</title>
+  <meta name="description" content="BS News account: sign in with Google, view profile." />
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#08121f" />
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar" id="navbar"></nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>Account</h1>
+        <p class="muted">Sign in with Google to submit posts and manage your profile.</p>
+      </div>
+      <div class="hero__right">
+        <div class="pill">
+          <span class="dot"></span>
+          <span id="statusLine">Loading…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logged out view -->
+    <section class="panel" id="authPanel" hidden>
+      <div class="panel__header">
+        <h2>Sign in</h2>
+        <p class="muted">Use Google OAuth. No password needed.</p>
+      </div>
+
+      <div class="auth">
+        <button class="btn btn--primary" id="googleSignInBtn" type="button">
+          <span class="glogo" aria-hidden="true"></span>
+          Continue with Google
+        </button>
+        <div class="notice" id="authNotice" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Logged in view -->
+    <section class="panel" id="profilePanel" hidden>
+      <div class="panel__header">
+        <h2>Profile</h2>
+        <p class="muted">Your public display name and avatar appear on posts.</p>
+      </div>
+
+      <div class="profile">
+        <div class="profile__top">
+          <img class="avatar avatar--xl" id="profilePhoto" alt="Profile picture" />
+          <div class="profile__meta">
+            <div class="profile__name" id="profileName">—</div>
+            <div class="muted" id="profileEmail">—</div>
+          </div>
+        </div>
+
+        <div class="profile__grid">
+          <div class="kv">
+            <div class="kv__k">UID</div>
+            <div class="kv__v mono" id="profileUid">—</div>
+          </div>
+          <div class="kv">
+            <div class="kv__k">Display name</div>
+            <div class="kv__v" id="profileDisplayName">—</div>
+          </div>
+          <div class="kv">
+            <div class="kv__k">Photo URL</div>
+            <div class="kv__v mono" id="profilePhotoUrl">—</div>
+          </div>
+        </div>
+
+        <div class="profile__actions">
+          <button class="btn btn--ghost" id="logoutBtn" type="button">Log out</button>
+          <a class="btn btn--primary" href="./index.html">Go to feed</a>
+        </div>
+
+        <!-- Admin indicator (only visible for admins; must not appear for non-admins) -->
+        <div class="admin-indicator" id="adminIndicator" hidden>
+          <span class="badge badge--admin">Admin</span>
+          <span class="muted">You can approve/reject pending posts on the Home page.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="muted">© <span id="year"></span> BS News</span>
+      <span class="muted">Google OAuth + roles</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./accounts.js"></script>
+</body>
+</html>
